@@ -28,7 +28,7 @@
     --ink: #171717;
     --ink-soft: #404040;
     --ink-muted: #737373;
-    --page: #fafafa;
+    --page: #ffffff;
     --white: #ffffff;
     --border: rgba(0,0,0,0.06);
     --border-strong: rgba(0,0,0,0.10);
@@ -311,23 +311,6 @@
       .loc-card { flex-direction: column; gap: 20px; }
       section { padding: 56px 16px; }
       .dl-section { padding: 40px 20px; }
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --page: #0d0d0d;
-        --white: #141414;
-        --ink: #ededed;
-        --ink-soft: #a0a0a0;
-        --ink-muted: #737373;
-        --border: rgba(255,255,255,0.08);
-        --border-strong: rgba(255,255,255,0.14);
-        --brand-light: rgba(100,155,41,0.10);
-      }
-      .nav { background: rgba(20,20,20,0.82); }
-      .story-card:hover, .menu-card:hover {
-        box-shadow: 0 2px 20px rgba(100,155,41,0.10);
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
