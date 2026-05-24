@@ -1,10 +1,10 @@
-# avojuice.com Landing Page
+# avojuice.com Landing Page v2
 
 一页式品牌官网，纯 HTML/CSS，零依赖、零构建。
 
-## 本地预览
+**v2 更新 (2026-05-25):** 全面重做 — 百分茶式清爽通透美学，融合 Mintlify 精准留白。
 
-直接浏览器开 `index.html`，或者用 Python 起个 server：
+## 本地预览
 
 ```bash
 cd "/Users/andrewheng/Desktop/AvoBase/07-软件开发团队/landing"
@@ -12,40 +12,64 @@ python3 -m http.server 8080
 # 浏览器开 http://localhost:8080
 ```
 
-## 部署（任选一种）
+## 部署
 
-### A. Vercel（推荐 — 跟 Admin 一个账号）
+### A. Vercel（推荐）
 
 ```bash
 cd landing
-git init && git add . && git commit -m "feat: landing v1"
-# 在 GitHub 新建一个 avojuice-landing repo
-git remote add origin https://github.com/avojuiceipoh-ux/avojuice-landing.git
-git push -u origin main
+git add . && git commit -m "v2: 全面重做 landing page"
+git push origin main
 ```
 
-然后到 Vercel → New Project → Import `avojuice-landing` → Deploy（不需要任何配置，纯静态）。
+Vercel 自动部署，域名：avojuice-landing.vercel.app
 
-域名设置：Vercel project → Settings → Domains → 加 `avojuice.com`（等域名买好后）。
+### B. 域名绑定
 
-### B. Cloudflare Pages
+Vercel project → Settings → Domains → 加 `avojuice.com`
 
-跟 Vercel 类似，连 GitHub repo 即可。免费版无限带宽，更适合长期。
+## 文件结构
 
-### C. GitHub Pages（最简单）
+```
+landing/
+├── index.html        # 主页面
+├── privacy.html      # 隐私政策
+├── terms.html        # 用户协议
+├── og-image.png      # 社交分享缩略图 (1200×630)
+├── og-image.html     # OG 图源文件（方便修改重生成）
+├── logo.png          # 品牌 Logo
+├── images/           # 产品实拍图（替换 emoji 用）
+│   ├── avocado-smoothie.jpg
+│   ├── mango-smoothie.jpg
+│   ├── strawberry-smoothie.jpg
+│   ├── blueberry-smoothie.jpg
+│   ├── watermelon-smoothie.jpg
+│   ├── banana-smoothie.jpg
+│   ├── redbean-smoothie.jpg
+│   ├── pineapple-passion.jpg
+│   └── peach-oolong.jpg
+└── README.md
+```
 
-repo Settings → Pages → 选 main 分支 → 几分钟上线在 `avojuiceipoh-ux.github.io/avojuice-landing/`。
+## 换图方法
 
-## 还要做
+1. 把实拍照丢进 `images/` 文件夹
+2. 文件名对上即可自动替换（`onerror` 回退到 emoji 占位）
+3. 如需加新品：复制 `<div class="menu-card">...</div>` 块
 
-- [ ] 买域名 `avojuice.com`（推荐 Namecheap / Cloudflare Registrar，约 RM 50/年）
-- [ ] DNS 指向 Vercel/Cloudflare
-- [ ] App Store / Play Store 上架后填 URL 到 store-btn
-- [ ] 加 `privacy.html` + `terms.html`（从 00-品牌/隐私政策.md 和 用户协议.md 转 HTML）
-- [ ] 加 og-image.png（社交分享缩略图，1200×630）
-- [ ] 真菜单图 / 摊位实拍 替换 emoji
+## 设计规范
 
-## 改 / 加内容
+- 主色: `#52c41a` (牛油果绿)
+- 深色: `#389e0d`
+- 浅绿: `#f6ffed`
+- 文字: `#171717` / `#737373`
+- 圆角: 8 / 16 / 24 / 9999px 渐进
+- 字体: Noto Sans SC + Inter
+- 暗色模式: `prefers-color-scheme: dark` 自动适配
 
-直接改 `index.html`。所有样式 inline 在 `<style>` 里。
-搜索关键词替换菜单、价格、特色文案。
+## 待办
+
+- [ ] 买域名 `avojuice.com`
+- [ ] 产品实拍图替换 emoji（丢 `images/` 即可）
+- [ ] App Store / Play Store 链接更新
+- [ ] DNS 指向 Vercel
