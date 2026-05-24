@@ -140,6 +140,16 @@
     }
     .btn-outline:hover { background: var(--brand-light); }
 
+    .hero-logo {
+      width: 160px; height: 160px;
+      margin: 48px auto 0; display: block;
+      animation: logo-float 4s ease-in-out infinite;
+    }
+    @keyframes logo-float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
     /* ═══ Sections ═══════════════════════════ */
     section { padding: 80px 24px; }
     .section-inner { max-width: 1024px; margin: 0 auto; }
@@ -340,13 +350,12 @@
 
   <!-- Hero -->
   <section class="hero">
-    <span class="hero-tag">UTAR 校园 · 真水果现榨</span>
+    <span class="hero-tag">真心 · 真诚 · 真实 对待每个客人</span>
     <h1>本真之味，<span class="hl">果中显</span></h1>
-    <p>我们不用浓缩果汁、不用粉冲、不用糖浆。<br>每一杯都标注：用了几颗鳄梨、多少克草莓、几片椰子。所见即所得。</p>
     <div class="hero-btns">
       <a href="#download" class="btn btn-primary">下载顾客 App</a>
-      <a href="#menu" class="btn btn-outline">看看菜单</a>
     </div>
+    <img src="/logo.png" alt="爱我果饮" class="hero-logo" onerror="this.style.display='none'">
   </section>
 
   <!-- Story / 品牌理念 -->
@@ -354,7 +363,7 @@
     <div class="section-inner">
       <span class="section-label">Why We Exist</span>
       <h2 class="section-title">显真味，见本心</h2>
-      <p class="section-sub">不是另一家奶茶店，是真正的现榨果饮工坊。我们相信一杯好喝的饮品，不需要科技与狠活。</p>
+      <p class="section-sub">不是另一家奶茶店，是真正的真果果饮工坊。我们坚信一杯好喝的饮品，不需要科技与狠活。满满的真诚与真材实料就是我们的底气。</p>
       <div class="story-grid">
         <div class="story-card">
           <div class="story-icon">🥑</div>
