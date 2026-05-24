@@ -242,35 +242,6 @@
       font-size: 12px; color: var(--ink-muted); margin-top: 4px;
     }
 
-    /* ═══ Location ═══════════════════════════ */
-    .loc-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      display: flex; gap: 32px; align-items: flex-start;
-      margin-top: 48px;
-    }
-    .loc-card .loc-icon {
-      font-size: 40px; flex-shrink: 0;
-      width: 64px; height: 64px;
-      background: var(--brand-light);
-      border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .loc-card .loc-info h3 {
-      font-size: 20px; font-weight: 700; margin-bottom: 8px;
-    }
-    .loc-card .loc-info p {
-      font-size: 15px; color: var(--ink-muted); line-height: 1.7;
-    }
-    .loc-card .loc-info .hours {
-      margin-top: 12px; font-size: 14px;
-      display: flex; gap: 24px; flex-wrap: wrap;
-    }
-    .hours-item { display: flex; align-items: center; gap: 6px; }
-    .hours-item .dot { width: 8px; height: 8px; background: var(--brand); border-radius: 50%; }
-
     /* ═══ Download ═══════════════════════════ */
     .dl-section {
       background: linear-gradient(160deg, var(--brand) 0%, var(--brand-deep) 100%);
@@ -299,6 +270,45 @@
     }
     .dl-btn:hover { background: rgba(255,255,255,0.25); }
 
+    /* ═══ Schedule ════════════════════════════ */
+    .schedule-list { max-width: 480px; }
+    .sch-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; border-radius: var(--radius-md);
+      margin-bottom: 6px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .sch-row.today {
+      background: var(--brand-light);
+      border-color: var(--brand);
+      border-width: 1.5px;
+      box-shadow: 0 0 0 4px rgba(100,155,41,0.08);
+    }
+    .sch-day {
+      width: 64px; font-size: 14px; font-weight: 700;
+      color: var(--ink); flex-shrink: 0;
+    }
+    .sch-row.today .sch-day { color: var(--brand); }
+    .sch-tag {
+      display: inline-block;
+      background: var(--brand); color: #fff;
+      font-size: 10px; font-weight: 700; padding: 2px 8px;
+      border-radius: var(--radius-pill); margin-left: 4px;
+    }
+    .sch-loc {
+      flex: 1; display: flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--ink);
+    }
+    .sch-row.today .sch-loc { color: var(--brand-dark); }
+    .sch-time { font-size: 13px; color: var(--ink-muted); flex-shrink: 0; }
+    .sch-row.off {
+      opacity: 0.45; border-style: dashed;
+    }
+    .sch-row.off .sch-loc,
+    .sch-row.off .sch-time { color: var(--ink-muted); }
+
     /* ═══ Footer ════════════════════════════ */
     footer {
       background: var(--ink); color: var(--ink-muted);
@@ -320,7 +330,6 @@
       .nav-links a:not(.nav-cta) { display: none; }
       .hero { padding: 100px 20px 56px; }
       .menu-grid { grid-template-columns: repeat(2, 1fr); }
-      .loc-card { flex-direction: column; gap: 20px; }
       section { padding: 56px 16px; }
       .dl-section { padding: 40px 20px; }
     }
@@ -532,19 +541,11 @@
   <section id="location">
     <div class="section-inner">
       <span class="section-label">Find Us</span>
-      <h2 class="section-title">摊位位置</h2>
-      <p class="section-sub">UTAR Kampar 校园主入口附近。确切位置请关注 Instagram @avojuice_ipoh。</p>
+      <h2 class="section-title">本周出摊</h2>
+      <p class="section-sub">每天 17:00–22:00。周日休息。确切位置请关注 Instagram @avojuice_ipoh。</p>
 
-      <div class="loc-card">
-        <div class="loc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#649b29" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="3"/></svg></div>
-        <div class="loc-info">
-          <h3>Mr. Fruit 摊位</h3>
-          <p>UTAR Kampar 校园主入口<br>Pasir Puteh, Perak</p>
-          <div class="hours">
-            <div class="hours-item"><span class="dot"></span> 周一至六 10:00 – 22:00</div>
-            <div class="hours-item" style="color: var(--ink-muted);">周日休息</div>
-          </div>
-        </div>
+      <div id="schedule" class="schedule-list" style="margin-top: 36px;">
+        <!-- JS 动态渲染 -->
       </div>
     </div>
   </section>
@@ -585,6 +586,49 @@
       © 2024 爱我果饮 Avo Juice · UTAR Kampar · 一步一脚印
     </div>
   </footer>
+
+  <script>
+    (() => {
+      const SCHEDULE = [
+        { day: '星期一', loc: '万里望新市镇' },
+        { day: '星期二', loc: '怡保东区' },
+        { day: '星期三', loc: '金宝夜市' },
+        { day: '星期四', loc: '万里望新市镇' },
+        { day: '星期五', loc: '怡保第一花园' },
+        { day: '星期六', loc: '华城夜市' },
+      ];
+      const TIME = '17:00 – 22:00';
+      const days = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+      const todayIdx = new Date().getDay();
+      const todayLabel = days[todayIdx];
+
+      const el = document.getElementById('schedule');
+      const pinSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="3"/></svg>';
+
+      let html = '';
+
+      // Mon-Sat
+      SCHEDULE.forEach((s, i) => {
+        const isToday = s.day === todayLabel;
+        const cls = isToday ? 'sch-row today' : 'sch-row';
+        html += `<div class="${cls}">
+          <span class="sch-day">${s.day}${isToday ? '<span class="sch-tag">今天</span>' : ''}</span>
+          <span class="sch-loc">${pinSvg} ${s.loc}</span>
+          <span class="sch-time">${TIME}</span>
+        </div>`;
+      });
+
+      // Sunday
+      const isSun = todayLabel === '星期日';
+      html += `<div class="sch-row${isSun ? ' today' : ' off'}">
+        <span class="sch-day">星期日${isSun ? '<span class="sch-tag">今天</span>' : ''}</span>
+        <span class="sch-loc">${pinSvg} 休息</span>
+        <span class="sch-time"></span>
+      </div>`;
+
+      el.innerHTML = html;
+    })();
+  </script>
 
 </body>
 </html>
