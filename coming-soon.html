@@ -81,19 +81,19 @@
     }
 
     .logo {
-      width: 80px; height: 80px;
+      width: 96px; height: 96px;
       border-radius: 50%;
-      margin-bottom: 28px;
+      margin: 0 auto 28px; display: block;
       box-shadow: 0 0 40px rgba(100,155,41,0.20);
     }
 
     .badge {
       display: inline-block;
-      padding: 5px 14px;
+      padding: 6px 18px;
       background: var(--brand-light);
       color: var(--brand-deep);
       border-radius: 9999px;
-      font-size: 12px; font-weight: 600;
+      font-size: 13px; font-weight: 600;
       margin-bottom: 24px; letter-spacing: 0.3px;
     }
 
@@ -138,6 +138,22 @@
     .back:hover { color: var(--brand); }
     .back::before { content: '← '; }
 
+    .insta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 26px;
+      border-radius: 9999px;
+      font-size: 14px; font-weight: 600;
+      background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+      color: #fff; text-decoration: none;
+      margin-bottom: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .insta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(131,58,180,0.30);
+    }
+    .insta-btn svg { flex-shrink: 0; }
+
     @media (max-width: 480px) {
       .card { padding: 44px 28px; }
       h1 { font-size: 24px; }
@@ -165,7 +181,12 @@
     <div class="badge">Coming Soon</div>
 
     <h1>App 即将上线</h1>
-    <p>我们正在打磨最好的真果体验。<br>暂请亲临 <strong>UTAR 校园摊位</strong> 购买，<br>或关注 Instagram 获取第一手消息。</p>
+    <p>我们正在打磨最好的真果体验。<br>暂请亲临 <strong>怡保夜市摊位</strong> 购买，<br>或关注 Instagram 获取第一手消息。</p>
+
+    <a href="https://instagram.com/avojuice_ipoh" target="_blank" rel="noopener" class="insta-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @avojuice_ipoh
+    </a>
 
     <div class="stores">
       <span class="store-btn">
